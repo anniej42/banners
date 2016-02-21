@@ -410,9 +410,9 @@ $("#post-257").on("click", function(){
   root.fixed = true;
 
   var force = d3.layout.force()
-    .gravity(0.1)
+    .gravity(0.05)
     .charge(function(d, i) {
-      return i ? 0 : -10000;
+      return i ? 0 : -5000;
     })
     .nodes(nodes)
     .size([width, height]);
@@ -441,7 +441,8 @@ $("#post-257").on("click", function(){
     // .attr("class", "node");
 
 
-  node.append("circle")
+  cir = node.append("g");
+  cir.append("circle")
     // .data(nodes.slice(1))
     // .enter()
     .attr("r", function(d) {
@@ -455,8 +456,8 @@ $("#post-257").on("click", function(){
     return "pill" + i + ".png";
   }
 
-
-  node.append("image")
+  img = node.append("g");
+  img.append("image")
     .attr("xlink:href", pick_pill)
     .attr("x", function(d) {
       return d.x - d.radius-1

@@ -180,13 +180,13 @@ function ready() {
 			TweenLite.to( $(".header.home"), 0, {autoAlpha:0 });
 			$("body").removeClass("loading");
 		}, 2000);
-		setTimeout(function() {
-			$(".txt-loading").removeClass("invisible");
-			//$('.slider').slick('slickPlay');
-			$("html, body").removeClass("no-scroll");
-			$("html.desktop").getNiceScroll().resize();
-			$(window).trigger('resize');
-		}, 400);
+		// setTimeout(function() {
+		// 	$(".txt-loading").removeClass("invisible");
+		// 	//$('.slider').slick('slickPlay');
+		// 	$("html, body").removeClass("no-scroll");
+		// 	$("html.desktop").getNiceScroll().resize();
+		// 	$(window).trigger('resize');
+		// }, 400);
 	}).on("click", "#more_posts", function(e){
 		e.preventDefault(); // When btn is pressed.
 		if($(this).hasClass('disable')) { return true; }
@@ -404,7 +404,7 @@ function loadPage(href) {
   }, 400), setTimeout(function() {
 		$(".main-wrapper").load(href + " .main-content", function() {
 			function action() {
-				showPage(); hidePage();
+				// showPage(); hidePage();
 			}
 			function bgimg() {
 				$('.main-wrapper img').waitForImages({
