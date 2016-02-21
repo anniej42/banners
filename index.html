@@ -72,6 +72,14 @@
       <div id="txt-loading" class="txt-loading title font-xxlarge invisible">YES, LET’S.</div>
     </div>
   </div>
+  <!-- <svg id="mySvg" width="40" height="40"> -->
+  <!--     <pattern id="image" x="0" y="0" height="40" width="40">
+      <image x="0" y="0" width="40" height="40" xlink:href="pill0.png"></image>
+    </pattern> -->
+  <!--     <pattern id="image" x="0" y="0" height="40" width="40">
+      <image x="0" y="0" width="40" height="40" xlink:href="pill0.png"></image>
+      </pattern>
+</defs> -->
   <main class="main-body">
     <header class="banner invert" role="banner">
       <div class="container">
@@ -175,6 +183,31 @@
     <div id="main" class="main-wrapper">
       <div id="content" class="main-content">
         <div id="projects" class="slider fader section bg">
+          <section id="post-257" class="project bg" data-post="257">
+            <div class="pattern">
+              <div style="background-color:#196fa8">
+                <img id="pills" src="wp-content/uploads/sites/6/2015/03/medisafe-pills.png" class="img width" />
+                <div class="container clearfix fullH">
+                  <div class="col6 pull-right info flex" style="background-color:#196fa8">
+                    <div class="flex col v-align">
+                      <div class="title spacing font-large animate-in">Medisafe</div>
+                      <div class="desc animate-in">Branding.</div>
+                      <div class="title spacing font-xlarge animate-in">A refreshed brand can be just
+                        <br /> the medicine a company needs.</div>
+                      <div class="copy col10 font-xsmall animate-in">
+                        <div class="inner">
+                          <p>Medisafe is answering one of the most vexing and frequently asked health care questions of our time: “How the heck am I ever going to keep all these medications straight?”
+                            <br /> Their answer was a mobile app that lets users do more than just organize their pills; it lets them take back the feeling of being in control of their various meds rather than at their mercy.</p>
+                          <p>With Medisafe, no one trying to follow a complicated medication...</p>
+                        </div>
+                        <a href="http://www.weareunik.com/network/natie/project/medisafe/" class="read-more h" title="See Medisafe full project">More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="post-32" class="project bg" data-post="32">
             <div class="pattern">
               <div style="background-color:#252a3d">
@@ -276,31 +309,6 @@
               </div>
             </div>
           </section>
-          <section id="post-257" class="project bg" data-post="257">
-            <div class="pattern">
-              <div style="background-color:#196fa8">
-                <img src="wp-content/uploads/sites/6/2015/03/medisafe-pills.png" class="img width" />
-                <div class="container clearfix fullH">
-                  <div class="col6 pull-right info flex" style="background-color:#196fa8">
-                    <div class="flex col v-align">
-                      <div class="title spacing font-large animate-in">Medisafe</div>
-                      <div class="desc animate-in">Branding.</div>
-                      <div class="title spacing font-xlarge animate-in">A refreshed brand can be just
-                        <br /> the medicine a company needs.</div>
-                      <div class="copy col10 font-xsmall animate-in">
-                        <div class="inner">
-                          <p>Medisafe is answering one of the most vexing and frequently asked health care questions of our time: “How the heck am I ever going to keep all these medications straight?”
-                            <br /> Their answer was a mobile app that lets users do more than just organize their pills; it lets them take back the feeling of being in control of their various meds rather than at their mercy.</p>
-                          <p>With Medisafe, no one trying to follow a complicated medication...</p>
-                        </div>
-                        <a href="http://www.weareunik.com/network/natie/project/medisafe/" class="read-more h" title="See Medisafe full project">More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
           <section id="post-259" class="project bg" data-post="259">
             <div class="pattern">
               <div style="background-color:#EF600D">
@@ -367,6 +375,7 @@
   /* ]]> */
   </script>
   <script src="wp-content/themes/natie/dist/scripts/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
   <script src="wp-content/plugins/jetpack/modules/photon/photon.js"></script>
   <script src="http://s0.wp.com/wp-content/js/devicepx-jetpack.js"></script>
   <script src="wp-includes/js/wp-embed.min.js"></script>
@@ -382,7 +391,167 @@
     srv: 'www.weareunik.com'
   }]);
   _stq.push(['clickTrackerInit', '100510504', '2']);
+
+
+$("#post-257").on("click", function(){
+  $("#pills").hide()
+  var width = window.innerWidth || e.clientWidth || g.clientWidth,
+    height = window.innerHeight || e.clientHeight || g.clientHeight;
+
+  var nodes = d3.range(200).map(function() {
+      return {
+        radius: Math.random() * 40 + 4
+      };
+    }),
+    root = nodes[0]
+    // color = d3.scale.category10();
+
+  root.radius = 0;
+  root.fixed = true;
+
+  var force = d3.layout.force()
+    .gravity(0.1)
+    .charge(function(d, i) {
+      return i ? 0 : -10000;
+    })
+    .nodes(nodes)
+    .size([width, height]);
+
+  force.start();
+
+  var svg = d3.select("#post-257").append("svg")
+    .attr("width", width)
+    .attr("height", height).attr("id", "mySvg");
+
+
+  // ORIGINAL ////////////////
+
+  // svg.selectAll("circle")
+  //     .data(nodes.slice(1))
+  //   .enter().append("circle")
+  //     .attr("r", function(d) { return d.radius; })
+  //     .style("fill", function(d, i) { return color(i % 3); });
+
+  /////////////////////////////
+
+  var node = svg.selectAll(".node")
+    .data(nodes.slice(1))
+    .enter()
+    .append("g")
+    // .attr("class", "node");
+
+
+  node.append("circle")
+    // .data(nodes.slice(1))
+    // .enter()
+    .attr("r", function(d) {
+      return d.radius;
+    })
+    .attr("class", "node")
+    .style("fill", "transparent");
+
+  function pick_pill() {
+    var i = ~~(Math.random() * 4)
+    return "pill" + i + ".png";
+  }
+
+
+  node.append("image")
+    .attr("xlink:href", pick_pill)
+    .attr("x", function(d) {
+      return d.x - d.radius-1
+    })
+    .attr("y", function(d) {
+      return d.y - d.radius-1
+    })
+    .attr("width", function(d) {
+      return 2 * d.radius-2
+    })
+    .attr("height", function(d) {
+      return 2 * d.radius-2
+    });
+  // .append("image")
+  // .attr("xlink:href", "https://github.com/favicon.ico")
+  //   .attr("x", -8)
+  //   .attr("y", -8)
+  //   .attr("width", 16)
+  //   .attr("height", 16);
+  // .style("fill", function(d){return "url(#image)"});
+
+  // svg.selectAll("circle").append("image")
+  //       .attr("xlink:href", "https://github.com/favicon.ico")
+  //       .attr("x", -8)
+  //       .attr("y", -8)
+  //       .attr("width", 16)
+  //       .attr("height", 16);
+
+  force.on("tick", function(e) {
+    var q = d3.geom.quadtree(nodes),
+      i = 0,
+      n = nodes.length;
+
+    while (++i < n) q.visit(collide(nodes[i]));
+
+    svg.selectAll("circle")
+      .attr("cx", function(d) {
+        return d.x;
+      })
+      .attr("cy", function(d) {
+        return d.y;
+      });
+    svg.selectAll("image")
+      .attr("x", function(d) {
+        return d.x - d.radius-1;
+      })
+      .attr("y", function(d) {
+        return d.y - d.radius-1;
+      });
+  });
+
+  svg.on("mousemove", function() {
+    var p1 = d3.mouse(this);
+    root.px = p1[0];
+    root.py = p1[1];
+    force.resume();
+  });
+
+  function collide(node) {
+    var r = node.radius + 16,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+    return function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== node)) {
+        var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.radius + quad.point.radius;
+        if (l < r) {
+          l = (l - r) / l * .5;
+          node.x -= x *= l;
+          node.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    };
+  }
+
+}
+  )
+
+  
   </script>
+  <style>
+  #mySvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+  }
+  </style>
 </body>
 
 </html>
