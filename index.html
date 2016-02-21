@@ -393,7 +393,7 @@
   _stq.push(['clickTrackerInit', '100510504', '2']);
 
 
-$("#post-257").on("click", function(){
+$("#post-257").one("click", function(){
   $("#pills").hide()
   var width = window.innerWidth || e.clientWidth || g.clientWidth,
     height = window.innerHeight || e.clientHeight || g.clientHeight;
@@ -437,12 +437,10 @@ $("#post-257").on("click", function(){
   var node = svg.selectAll(".node")
     .data(nodes.slice(1))
     .enter()
-    .append("g")
     // .attr("class", "node");
 
 
-  cir = node.append("g");
-  cir.append("circle")
+  node.append("circle")
     // .data(nodes.slice(1))
     // .enter()
     .attr("r", function(d) {
@@ -456,8 +454,8 @@ $("#post-257").on("click", function(){
     return "pill" + i + ".png";
   }
 
-  img = node.append("g");
-  img.append("image")
+  
+  node.append("image")
     .attr("xlink:href", pick_pill)
     .attr("x", function(d) {
       return d.x - d.radius-1
@@ -471,20 +469,6 @@ $("#post-257").on("click", function(){
     .attr("height", function(d) {
       return 2 * d.radius-2
     });
-  // .append("image")
-  // .attr("xlink:href", "https://github.com/favicon.ico")
-  //   .attr("x", -8)
-  //   .attr("y", -8)
-  //   .attr("width", 16)
-  //   .attr("height", 16);
-  // .style("fill", function(d){return "url(#image)"});
-
-  // svg.selectAll("circle").append("image")
-  //       .attr("xlink:href", "https://github.com/favicon.ico")
-  //       .attr("x", -8)
-  //       .attr("y", -8)
-  //       .attr("width", 16)
-  //       .attr("height", 16);
 
   force.on("tick", function(e) {
     var q = d3.geom.quadtree(nodes),
