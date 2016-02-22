@@ -2,7 +2,7 @@ var $banner, $item, barH, topH, scrollTop, topS, hS, lastScrollTop, flag, timer,
 	$banner = $('.banner');
 	$item = $banner.find("li a");
 	$pLoad = $("#txt-loading");
-	$pText = ["Hi. Nice to meet you.", "Look how close we are already.", "Every word counts.", "Yes, let's."];
+	$pText = ["Let's have some fun."];
 
 /*function fSize() {
 	"use strict";
@@ -240,30 +240,30 @@ function ready() {
 			$($this).addClass("current"); 
 		}
 		
-		var tempValues = {};
-		$(".tag-ajax.current").each(function(){
-			 var th= $(this);
-			 tempValues[th.html()] = th.attr('id');
-		 });
-		console.log( tempValues);
-		//$("#loading-animation").show();
+		// var tempValues = {};
+		// $(".tag-ajax.current").each(function(){
+		// 	 var th= $(this);
+		// 	 tempValues[th.html()] = th.attr('id');
+		//  });
+		// console.log( tempValues);
+		// //$("#loading-animation").show();
 
-		var data = {
-			action: 'load_filter',
-			security : MyAjax.security,
-			tag: tempValues
-		};
-		$.post(MyAjax.ajaxurl, data, function(response) {
-			var parsed_json = jQuery.parseJSON(response);
-			if (parsed_json != 0){
-				//console.log(parsed_json);
-				$("#projects-grid").html(parsed_json);
+		// var data = {
+		// 	action: 'load_filter',
+		// 	security : MyAjax.security,
+		// 	tag: tempValues
+		// };
+		// $.post(MyAjax.ajaxurl, data, function(response) {
+		// 	var parsed_json = jQuery.parseJSON(response);
+		// 	if (parsed_json != 0){
+		// 		//console.log(parsed_json);
+		// 		$("#projects-grid").html(parsed_json);
 				
-				//jQuery.ias().reinitialize(); 
-				//$("#loading-animation").hide();
-				return false;
-			}
-		});
+		// 		//jQuery.ias().reinitialize(); 
+		// 		//$("#loading-animation").hide();
+		// 		return false;
+		// 	}
+		// });
 		
 	});
 	
@@ -309,10 +309,10 @@ function reBuild() {
 		}).slick({
 			dots: true,
 			speed: 800,
-			autoplay: true,
+			autoplay: false,
 			arrows: false,
-			autoplaySpeed: 45000,
-			infinite: true,
+			// autoplaySpeed: 45000,
+			// infinite: true,
 			pauseOnHover: false,
 			pauseOnDotsHover: true
 		});
@@ -320,15 +320,15 @@ function reBuild() {
 	if($("#press").length > 0) {
 		$("#press").slick({
 			dots: false,
-			speed: 800,
-			autoplay: true,
+			// speed: 800,
+			autoplay: false,
 			arrows: false,
-			autoplaySpeed: 45000,
-			infinite: true,
+			// autoplaySpeed: 45000,
+			// infinite: true,
 			fade: true,
 			cssEase: 'linear',
-			pauseOnHover: true,
-			pauseOnDotsHover: false
+			// pauseOnHover: true,
+			// pauseOnDotsHover: false
 		});
 	}
 }

@@ -24,7 +24,6 @@
   <!-- Jetpack Open Graph Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="natie" />
-  <meta property="og:description" content="Just another unik Sites site" />
   <meta property="og:url" content="http://www.weareunik.com/network/natie/" />
   <meta property="og:site_name" content="natie" />
   <meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
@@ -69,17 +68,9 @@
     <![endif]-->
   <div class="preloader">
     <div class="wrap-loading clearfix">
-      <div id="txt-loading" class="txt-loading title font-xxlarge invisible">YES, LET’S.</div>
+      <div id="txt-loading" class="txt-loading title font-xxlarge invisible">LET'S PLAY.</div>
     </div>
   </div>
-  <!-- <svg id="mySvg" width="40" height="40"> -->
-  <!--     <pattern id="image" x="0" y="0" height="40" width="40">
-      <image x="0" y="0" width="40" height="40" xlink:href="pill0.png"></image>
-    </pattern> -->
-  <!--     <pattern id="image" x="0" y="0" height="40" width="40">
-      <image x="0" y="0" width="40" height="40" xlink:href="pill0.png"></image>
-      </pattern>
-</defs> -->
   <main class="main-body">
     <header class="banner invert" role="banner">
       <div class="container">
@@ -398,9 +389,9 @@ $("#post-257").one("click", function(){
   var width = window.innerWidth || e.clientWidth || g.clientWidth,
     height = window.innerHeight || e.clientHeight || g.clientHeight;
 
-  var nodes = d3.range(200).map(function() {
+  var nodes = d3.range(100).map(function() {
       return {
-        radius: Math.random() * 40 + 4
+        radius: Math.random() * 40 + 16
       };
     }),
     root = nodes[0]
@@ -412,13 +403,17 @@ $("#post-257").one("click", function(){
   var force = d3.layout.force()
     .gravity(0.05)
     .charge(function(d, i) {
-      return i ? 0 : -5000;
+      return i ? 0 : -7500;
     })
     .nodes(nodes)
     .size([width, height]);
 
   force.start();
-
+var k = 0;
+while ((force.alpha() > 1e-2) && (k < 150)) {
+    force.tick(),
+    k = k + 1;
+}
   var svg = d3.select("#post-257").append("svg")
     .attr("width", width)
     .attr("height", height).attr("id", "mySvg");
@@ -526,8 +521,6 @@ $("#post-257").one("click", function(){
 
 }
   )
-
-  
   </script>
   <style>
   #mySvg {
