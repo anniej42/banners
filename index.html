@@ -199,32 +199,6 @@
               </div>
             </div>
           </section>
-          <section id="post-32" class="project bg" data-post="32">
-            <div class="pattern">
-              <div style="background-color:#252a3d">
-                <img src="wp-content/uploads/sites/6/2015/07/phree-pens.png" class="img height" />
-                <div class="container clearfix fullH">
-                  <div class="col6 pull-right info flex" style="background-color:#252a3d">
-                    <div class="flex col v-align">
-                      <div class="title spacing font-large animate-in">Phree</div>
-                      <div class="desc animate-in">Branding & Visual Identity.</div>
-                      <div class="title spacing font-xlarge animate-in">For Phree, we created
-                        <br /> more than a new brand.
-                        <br /> We created tremendous excitement.</div>
-                      <div class="copy col10 font-xsmall animate-in">
-                        <div class="inner">
-                          <p>When <a href="https://www.kickstarter.com/projects/1958554063/phree-make-the-world-your-paper" target="_blank">Phree</a>, the world’s first write-virtually-anywhere-you-can-think-of mobile input device debuted on Kickstarter, it reached its $100,000 goal in less than 24 hours and had surpassed $1 million when the campaign ended 45 days later.</p>
-                          <p>It was such a success that Phree was written up in Wired, CNET, Yahoo!
-                            <br /> Technology and a bunch of other places – and most of them pulled directly from our work to describe this amazing product...</p>
-                        </div>
-                        <a href="http://www.weareunik.com/network/natie/project/phree/" class="read-more h" title="See Phree full project">More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
           <section id="post-14" class="project bg" data-post="14">
             <div class="pattern">
               <div style="background-color:#b52602">
@@ -245,6 +219,32 @@
                           <p>So we designed a responsive one that works and looks great on whatever device it’s being viewed on. We also created a brochure, conference materials and a booth design, 3D rendering work, copywriting, and a strategic...</p>
                         </div>
                         <a href="http://www.weareunik.com/network/natie/project/valtech/" class="read-more h" title="See Valtech full project">More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="post-32" class="project bg" data-post="32">
+            <div class="pattern">
+              <div style="background-color:#252a3d">
+                <img src="wp-content/uploads/sites/6/2015/07/phree-pens.png" class="img height" />
+                <div class="container clearfix fullH">
+                  <div class="col6 pull-right info flex" style="background-color:#252a3d">
+                    <div class="flex col v-align">
+                      <div class="title spacing font-large animate-in">Phree</div>
+                      <div class="desc animate-in">Branding & Visual Identity.</div>
+                      <div class="title spacing font-xlarge animate-in">For Phree, we created
+                        <br /> more than a new brand.
+                        <br /> We created tremendous excitement.</div>
+                      <div class="copy col10 font-xsmall animate-in">
+                        <div class="inner">
+                          <p>When <a href="https://www.kickstarter.com/projects/1958554063/phree-make-the-world-your-paper" target="_blank">Phree</a>, the world’s first write-virtually-anywhere-you-can-think-of mobile input device debuted on Kickstarter, it reached its $100,000 goal in less than 24 hours and had surpassed $1 million when the campaign ended 45 days later.</p>
+                          <p>It was such a success that Phree was written up in Wired, CNET, Yahoo!
+                            <br /> Technology and a bunch of other places – and most of them pulled directly from our work to describe this amazing product...</p>
+                        </div>
+                        <a href="http://www.weareunik.com/network/natie/project/phree/" class="read-more h" title="See Phree full project">More</a>
                       </div>
                     </div>
                   </div>
@@ -526,11 +526,17 @@
 
   })
 
-  $(".fixedimg").on("click", function(){
-    TweenMax.fromTo(this,0.4,{scale:1.2,x:0 ,y:0},
-    {scale:1,x:0 ,y:0}).repeat(1);
+  $(".fixedimg").on("click", function() {
+    TweenMax.fromTo(this, 0.4, {
+      scale: 1.2,
+      x: 0,
+      y: 0
+    }, {
+      scale: 1,
+      x: 0,
+      y: 0
+    }).repeat(1);
   });
-
   </script>
   <style>
   #mySvg {
@@ -539,19 +545,19 @@
     left: 0;
     z-index: 50;
   }
-
-  .fixedimg{
+  
+  .fixedimg {
     width: 15%;
     position: absolute;
     z-index: 20;
   }
-
-  .fixedimg.left{
+  
+  .fixedimg.left {
     margin-top: 15%;
     margin-left: 5%
   }
-
-  .fixedimg.right{
+  
+  .fixedimg.right {
     margin-top: 20%;
     margin-left: 25%
   }
