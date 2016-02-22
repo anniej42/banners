@@ -110,7 +110,7 @@
             </div>
           </div>
         </div>
-<!--         <div class="menu-blog-container">
+        <!--         <div class="menu-blog-container">
           <div class="container flex">
             <div class="the-blog flex v-align col">
               <div class="col7 aligncenter">You are leaving the natie website to land to our blog 5percent.club</div>
@@ -121,7 +121,7 @@
             </div>
           </div>
         </div> -->
-<!--         <div class="menu-contact-container">
+        <!--         <div class="menu-contact-container">
           <div class="container flex">
             <div class="contact-us flex v-align col">
               <div class="top clearfix">
@@ -228,7 +228,9 @@
           <section id="post-14" class="project bg" data-post="14">
             <div class="pattern">
               <div style="background-color:#b52602">
-                <img src="wp-content/uploads/sites/6/2015/10/valtech-hearts.png" class="img width" />
+                <img src="hearts-background.png" class="img width" />
+                <img src="left-heart cropped.png" class="fixedimg left" />
+                <img src="right-heart cropped.png" class="fixedimg right" />
                 <div class="container clearfix fullH">
                   <div class="col6 pull-right info flex" style="background-color:#b52602">
                     <div class="flex col v-align">
@@ -367,6 +369,7 @@
   </script>
   <script src="wp-content/themes/natie/dist/scripts/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
   <script src="wp-content/plugins/jetpack/modules/photon/photon.js"></script>
   <script src="http://s0.wp.com/wp-content/js/devicepx-jetpack.js"></script>
   <script src="wp-includes/js/wp-embed.min.js"></script>
@@ -384,143 +387,150 @@
   _stq.push(['clickTrackerInit', '100510504', '2']);
 
 
-$("#post-257").one("click", function(){
-  $("#pills").hide()
-  var width = window.innerWidth || e.clientWidth || g.clientWidth,
-    height = window.innerHeight || e.clientHeight || g.clientHeight;
+  $("#post-257").one("click", function() {
+    $("#pills").hide()
+    var width = window.innerWidth || e.clientWidth || g.clientWidth,
+      height = window.innerHeight || e.clientHeight || g.clientHeight;
 
-  var nodes = d3.range(100).map(function() {
-      return {
-        radius: Math.random() * 40 + 16
-      };
-    }),
-    root = nodes[0]
-    // color = d3.scale.category10();
+    var nodes = d3.range(100).map(function() {
+        return {
+          radius: Math.random() * 40 + 16
+        };
+      }),
+      root = nodes[0]
+      // color = d3.scale.category10();
 
-  root.radius = 0;
-  root.fixed = true;
+    root.radius = 0;
+    root.fixed = true;
 
-  var force = d3.layout.force()
-    .gravity(0.05)
-    .charge(function(d, i) {
-      return i ? 0 : -7500;
-    })
-    .nodes(nodes)
-    .size([width, height]);
-
-  force.start();
-var k = 0;
-while ((force.alpha() > 1e-2) && (k < 75)) {
-    force.tick(),
-    k = k + 1;
-}
-  var svg = d3.select("#post-257").append("svg")
-    .attr("width", width)
-    .attr("height", height).attr("id", "mySvg");
-
-
-  // ORIGINAL ////////////////
-
-  // svg.selectAll("circle")
-  //     .data(nodes.slice(1))
-  //   .enter().append("circle")
-  //     .attr("r", function(d) { return d.radius; })
-  //     .style("fill", function(d, i) { return color(i % 3); });
-
-  /////////////////////////////
-
-  var node = svg.selectAll(".node")
-    .data(nodes.slice(1))
-    .enter()
-    // .attr("class", "node");
-
-
-  node.append("circle")
-    // .data(nodes.slice(1))
-    // .enter()
-    .attr("r", function(d) {
-      return d.radius;
-    })
-    .attr("class", "node")
-    .style("fill", "transparent");
-
-  function pick_pill() {
-    var i = ~~(Math.random() * 4)
-    return "pill" + i + ".png";
-  }
-
-  
-  node.append("image")
-    .attr("xlink:href", pick_pill)
-    .attr("x", function(d) {
-      return d.x - d.radius-1
-    })
-    .attr("y", function(d) {
-      return d.y - d.radius-1
-    })
-    .attr("width", function(d) {
-      return 2 * d.radius-2
-    })
-    .attr("height", function(d) {
-      return 2 * d.radius-2
-    });
-
-  force.on("tick", function(e) {
-    var q = d3.geom.quadtree(nodes),
-      i = 0,
-      n = nodes.length;
-
-    while (++i < n) q.visit(collide(nodes[i]));
-
-    svg.selectAll("circle")
-      .attr("cx", function(d) {
-        return d.x;
+    var force = d3.layout.force()
+      .gravity(0.05)
+      .charge(function(d, i) {
+        return i ? 0 : -7500;
       })
-      .attr("cy", function(d) {
-        return d.y;
-      });
-    svg.selectAll("image")
+      .nodes(nodes)
+      .size([width, height]);
+
+    force.start();
+
+    var k = 0;
+    while ((force.alpha() > 1e-2) && (k < 75)) {
+      force.tick(),
+        k = k + 1;
+    }
+
+    var svg = d3.select("#post-257").append("svg")
+      .attr("width", width)
+      .attr("height", height).attr("id", "mySvg");
+
+
+    // ORIGINAL ////////////////
+
+    // svg.selectAll("circle")
+    //     .data(nodes.slice(1))
+    //   .enter().append("circle")
+    //     .attr("r", function(d) { return d.radius; })
+    //     .style("fill", function(d, i) { return color(i % 3); });
+
+    /////////////////////////////
+
+    var node = svg.selectAll(".node")
+      .data(nodes.slice(1))
+      .enter()
+      // .attr("class", "node");
+
+
+    node.append("circle")
+      // .data(nodes.slice(1))
+      // .enter()
+      .attr("r", function(d) {
+        return d.radius;
+      })
+      .attr("class", "node")
+      .style("fill", "transparent");
+
+    function pick_pill() {
+      var i = ~~(Math.random() * 4)
+      return "pill" + i + ".png";
+    }
+
+
+    node.append("image")
+      .attr("xlink:href", pick_pill)
       .attr("x", function(d) {
-        return d.x - d.radius-1;
+        return d.x - d.radius - 1
       })
       .attr("y", function(d) {
-        return d.y - d.radius-1;
+        return d.y - d.radius - 1
+      })
+      .attr("width", function(d) {
+        return 2 * d.radius - 2
+      })
+      .attr("height", function(d) {
+        return 2 * d.radius - 2
       });
-  });
 
-  svg.on("mousemove", function() {
-    var p1 = d3.mouse(this);
-    root.px = p1[0];
-    root.py = p1[1];
-    force.resume();
-  });
+    force.on("tick", function(e) {
+      var q = d3.geom.quadtree(nodes),
+        i = 0,
+        n = nodes.length;
 
-  function collide(node) {
-    var r = node.radius + 16,
-      nx1 = node.x - r,
-      nx2 = node.x + r,
-      ny1 = node.y - r,
-      ny2 = node.y + r;
-    return function(quad, x1, y1, x2, y2) {
-      if (quad.point && (quad.point !== node)) {
-        var x = node.x - quad.point.x,
-          y = node.y - quad.point.y,
-          l = Math.sqrt(x * x + y * y),
-          r = node.radius + quad.point.radius;
-        if (l < r) {
-          l = (l - r) / l * .5;
-          node.x -= x *= l;
-          node.y -= y *= l;
-          quad.point.x += x;
-          quad.point.y += y;
+      while (++i < n) q.visit(collide(nodes[i]));
+
+      svg.selectAll("circle")
+        .attr("cx", function(d) {
+          return d.x;
+        })
+        .attr("cy", function(d) {
+          return d.y;
+        });
+      svg.selectAll("image")
+        .attr("x", function(d) {
+          return d.x - d.radius - 1;
+        })
+        .attr("y", function(d) {
+          return d.y - d.radius - 1;
+        });
+    });
+
+    svg.on("mousemove", function() {
+      var p1 = d3.mouse(this);
+      root.px = p1[0];
+      root.py = p1[1];
+      force.resume();
+    });
+
+    function collide(node) {
+      var r = node.radius + 16,
+        nx1 = node.x - r,
+        nx2 = node.x + r,
+        ny1 = node.y - r,
+        ny2 = node.y + r;
+      return function(quad, x1, y1, x2, y2) {
+        if (quad.point && (quad.point !== node)) {
+          var x = node.x - quad.point.x,
+            y = node.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = node.radius + quad.point.radius;
+          if (l < r) {
+            l = (l - r) / l * .5;
+            node.x -= x *= l;
+            node.y -= y *= l;
+            quad.point.x += x;
+            quad.point.y += y;
+          }
         }
-      }
-      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-    };
-  }
+        return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+      };
+    }
 
-}
-  )
+  })
+
+  $(".fixedimg").on("click", function(){
+    TweenMax.fromTo(this,0.4,{scale:1.2,x:0 ,y:0},
+    {scale:1,x:0 ,y:0}).repeat(1);
+  });
+
   </script>
   <style>
   #mySvg {
@@ -528,6 +538,22 @@ while ((force.alpha() > 1e-2) && (k < 75)) {
     top: 0;
     left: 0;
     z-index: 50;
+  }
+
+  .fixedimg{
+    width: 15%;
+    position: absolute;
+    z-index: 20;
+  }
+
+  .fixedimg.left{
+    margin-top: 15%;
+    margin-left: 5%
+  }
+
+  .fixedimg.right{
+    margin-top: 20%;
+    margin-left: 25%
   }
   </style>
 </body>
