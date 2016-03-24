@@ -461,30 +461,6 @@ $(window).scroll(function() {
       $('.slider').slick('slickPlay');
     }
   }
-  /*if ( $banner.hasClass( "open" ) ) { return true; } else {
-    if($("#projects.slider").length > 0) {
-      
-      if( scrollTop < topS ) {
-        if ($banner.attr("style")) {
-          return true;
-        } else {
-          $banner.removeClass("invisible");
-          $banner.css({"top": 0, "position" : "absolute"});
-        }
-      } else if ( (scrollTop < topS) && (scrollTop > (topS-barH)) ) {
-        $banner.addClass("invisible");
-      } else {
-        if ( $banner.hasClass( "invisible" ) ) {
-          $banner.removeAttr("style");
-          $banner.removeClass("invisible");
-        }
-      }
-      
-      console.log(scrollTop+' d   '+topS+'    '+scrollTop > (topS-barH));
-          
-    }
-    
-  }*/
 
 });
 
